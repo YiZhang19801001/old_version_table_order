@@ -130,24 +130,26 @@ export default class ChoiceForm extends Component {
           </div>
           <div className="choice-form__list-container">
             {this.props.product.sizes.length > 0 && <div className="choice-form__list-content">
-              <div className="choice-group">
-                <div className="choice-group__title">{'Size'}</div>
-                <div className="choice-group__subtitle">
+              <div className="size-group__container">
+                <div className="size-group__title">{'Size'}</div>
+                <div className="size-group__subtitle">
                   {this.props.app_conf.size_form_title}
                 </div>
-                {this.props.product.sizes.map((size, index) => {
-                  return (
-                    <SizeGroup
-                      key={`sizeGroup${index}`}
-                      size={size}
-                      pickedSize={this.state.pickedSize}
-                      updateOrderItemSize={this.updateOrderItemSize}
-                      app_conf={this.props.app_conf}
-                      index={index}
-                      isListView={this.state.isListView}
-                    />
-                  );
-                })}
+                <div className="size-group">
+                  {this.props.product.sizes.map((size, index) => {
+                    return (
+                      <SizeGroup
+                        key={`sizeGroup${index}`}
+                        size={size}
+                        pickedSize={this.state.pickedSize}
+                        updateOrderItemSize={this.updateOrderItemSize}
+                        app_conf={this.props.app_conf}
+                        index={index}
+                        isListView={this.state.isListView}
+                      />
+                    );
+                  })}
+                </div>
               </div>
             </div>}
             <div className="choice-form__list-content">

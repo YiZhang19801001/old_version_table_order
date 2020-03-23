@@ -5,8 +5,12 @@ class SizeGroup extends React.Component {
         // const imgSrc = `url("/table/public/images/items/${this.props.imgSrc}")`;
         return (
 
-            <div className="choice-group__content" onClick={() => { this.props.updateOrderItemSize(this.props.size) }}>
-                {this.props.size.name} - ${this.props.size.price} - {this.props.size.size_level === this.props.pickedSize.size_level ? "Y" : "N"}
+            <div
+                className={
+                    this.props.size.size_level === this.props.pickedSize.size_level ? "size-group__content active" : "size-group__content"
+                }
+                onClick={() => { this.props.updateOrderItemSize(this.props.size) }}>
+                {this.props.size.name}  ${this.props.size.price}
 
             </div>
 
@@ -15,3 +19,4 @@ class SizeGroup extends React.Component {
 }
 
 export default SizeGroup
+

@@ -72002,28 +72002,32 @@ var ChoiceForm = function (_Component) {
               { className: "choice-form__list-content" },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "div",
-                { className: "choice-group" },
+                { className: "size-group__container" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   "div",
-                  { className: "choice-group__title" },
+                  { className: "size-group__title" },
                   'Size'
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   "div",
-                  { className: "choice-group__subtitle" },
+                  { className: "size-group__subtitle" },
                   this.props.app_conf.size_form_title
                 ),
-                this.props.product.sizes.map(function (size, index) {
-                  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__SizeGroup__["a" /* default */], {
-                    key: "sizeGroup" + index,
-                    size: size,
-                    pickedSize: _this3.state.pickedSize,
-                    updateOrderItemSize: _this3.updateOrderItemSize,
-                    app_conf: _this3.props.app_conf,
-                    index: index,
-                    isListView: _this3.state.isListView
-                  });
-                })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  "div",
+                  { className: "size-group" },
+                  this.props.product.sizes.map(function (size, index) {
+                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__SizeGroup__["a" /* default */], {
+                      key: "sizeGroup" + index,
+                      size: size,
+                      pickedSize: _this3.state.pickedSize,
+                      updateOrderItemSize: _this3.updateOrderItemSize,
+                      app_conf: _this3.props.app_conf,
+                      index: index,
+                      isListView: _this3.state.isListView
+                    });
+                  })
+                )
               )
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -72267,14 +72271,14 @@ var SizeGroup = function (_React$Component) {
             // const imgSrc = `url("/table/public/images/items/${this.props.imgSrc}")`;
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "div",
-                { className: "choice-group__content", onClick: function onClick() {
+                {
+                    className: this.props.size.size_level === this.props.pickedSize.size_level ? "size-group__content active" : "size-group__content",
+                    onClick: function onClick() {
                         _this2.props.updateOrderItemSize(_this2.props.size);
                     } },
                 this.props.size.name,
-                " - $",
-                this.props.size.price,
-                " - ",
-                this.props.size.size_level === this.props.pickedSize.size_level ? "Y" : "N"
+                "  $",
+                this.props.size.price
             );
         }
     }]);
