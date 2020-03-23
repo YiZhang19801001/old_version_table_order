@@ -325,9 +325,11 @@ body {
     }
   }
   .choice-form__list-container {
+    height: 45vh;
+    overflow: scroll;
     .choice-form__list-content {
-      height: 45vh;
-      overflow: scroll;
+      // height: 45vh;
+      // overflow: scroll;
     }
   }
   .choice-form__confirm-button-container {

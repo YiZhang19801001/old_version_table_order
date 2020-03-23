@@ -113,6 +113,7 @@ class ProductController extends Controller
                 //details only needed for show options mode
                 if ($mode == 9) {
                     $new_product["choices"] = $this->getChoicesHelper($target_product->product_id, $lang);
+                    $new_product["size"] = [];
                     $new_product["options"] = [];
                 }
 

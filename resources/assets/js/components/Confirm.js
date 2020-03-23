@@ -61,7 +61,7 @@ export default class Confirm extends Component {
       this.state.shoppingCartList.forEach(el => {
         qr = qr + el.item.upc + ",";
         qr = qr + el.quantity + ",";
-        qr = qr + "0" + ";";
+        qr = qr + el.pickedSize || 0 + ";";
         el.item.choices.forEach(choice => {
           if (choice.pickedChoice !== null) {
             choice.pickedChoice.forEach(ele => {
@@ -150,6 +150,9 @@ export default class Confirm extends Component {
         </div>
       </div>
     );
+
+    console.log({ cartList: this.state.shoppingCartList });
+
 
     return (
       <div className="confirm">

@@ -23,6 +23,7 @@ import Menu from "./components/Menu";
 import Complete from "./components/Complete";
 import MySql from "./components/MySql";
 import Setting from "./components/Setting";
+import Upload from "./components/Upload";
 
 export default class App extends Component {
   constructor(props) {
@@ -325,6 +326,11 @@ export default class App extends Component {
             render={props => (
               <Setting app_conf={this.state.app_conf} {...props} />
             )}
+          />
+          <Route
+            exact
+            path="/table/public/upload"
+            component={Upload}
           />
           <Route
             exact

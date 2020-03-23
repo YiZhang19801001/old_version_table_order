@@ -457,7 +457,7 @@ body {
   color: #333333;
 }
 
-.choice-form .choice-form__list-container .choice-form__list-content {
+.choice-form .choice-form__list-container {
   height: 45vh;
   overflow: scroll;
 }

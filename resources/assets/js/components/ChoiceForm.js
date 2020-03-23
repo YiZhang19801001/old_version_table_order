@@ -114,6 +114,20 @@ export default class ChoiceForm extends Component {
               {this.state.product.choices.map((choiceGroup, index) => {
                 return (
                   <ChoiceGroup
+                    key={`sizeGroup${index}`}
+                    choiceGroup={choiceGroup}
+                    updateOrderItemChoice={this.updateOrderItemChoice}
+                    app_conf={this.props.app_conf}
+                    index={index}
+                    isListView={this.state.isListView}
+                  />
+                );
+              })}
+            </div>
+            <div className="choice-form__list-content">
+              {this.state.product.choices.map((choiceGroup, index) => {
+                return (
+                  <ChoiceGroup
                     key={`choiceGroup${index}`}
                     choiceGroup={choiceGroup}
                     updateOrderItemChoice={this.updateOrderItemChoice}
