@@ -24,10 +24,23 @@ export default class OrderItemCard extends Component {
 
   getTotalPrice() {
     let resPrice = this.state.orderItem.item.price;
+    let orderItem = this.state.orderItem.item;
 
     // this.state.orderItem.item.choices.map(choice)
-    const totalPrice = resPrice * this.state.orderItem.quantity;
+    let totalPrice = resPrice * this.state.orderItem.quantity;
+
+    if (orderItem.choices) {
+      orderItem.choices.forEach(c => {
+        if (c.pickedChoice) {
+          c.pickedChoice.forEach(pc => {
+            totalPrice += parseFloat(pc.price) * this.state.orderItem.quantity;
+          })
+        }
+      })
+    }
+
     return totalPrice.toFixed(2);
+
   }
 
   increase() {
@@ -73,10 +86,10 @@ export default class OrderItemCard extends Component {
           </span>
         </div>
       ) : (
-        <div className="order-item-card__quantity-display">
-          <span>X{this.state.orderItem.quantity}</span>
-        </div>
-      );
+          <div className="order-item-card__quantity-display">
+            <span>X{this.state.orderItem.quantity}</span>
+          </div>
+        );
     return (
       <div className="order-item-card">
         {this.props.mode !== 3 ? (
@@ -84,7 +97,7 @@ export default class OrderItemCard extends Component {
             <img
               src={`/table/public/images/items/${
                 this.state.orderItem.item.image
-              }`}
+                }`}
               alt=""
             />
           </div>
@@ -104,20 +117,20 @@ export default class OrderItemCard extends Component {
                 </div>
                 {choice.pickedChoice !== null
                   ? choice.pickedChoice.map((pickedchoice, index) => {
-                      return (
-                        <div
-                          key={`decodePickedChoice${index}`}
-                          className="order-item-card__choices__pickedChoice"
-                        >
-                          <span className="order-item-card__choices__pickedChoice-name">
-                            {pickedchoice.name}
-                          </span>
-                          <span className="order-item-card__choices__pickedChoice-price">
-                            ${pickedchoice.price}
-                          </span>
-                        </div>
-                      );
-                    })
+                    return (
+                      <div
+                        key={`decodePickedChoice${index}`}
+                        className="order-item-card__choices__pickedChoice"
+                      >
+                        <span className="order-item-card__choices__pickedChoice-name">
+                          {pickedchoice.name}
+                        </span>
+                        <span className="order-item-card__choices__pickedChoice-price">
+                          ${pickedchoice.price}
+                        </span>
+                      </div>
+                    );
+                  })
                   : null}
               </div>
             );

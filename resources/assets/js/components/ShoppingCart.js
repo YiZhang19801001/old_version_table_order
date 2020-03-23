@@ -82,7 +82,7 @@ export default class ShoppingCart extends Component {
     }
   }
 
-  debounceRun() {}
+  debounceRun() { }
 
   reFetchOrderListFromServe() {
     console.log("called");
@@ -122,6 +122,15 @@ export default class ShoppingCart extends Component {
     if (this.state.shoppingCartList.length > 0) {
       this.state.shoppingCartList.forEach(orderItem => {
         sum += orderItem.item.price * orderItem.quantity;
+        if (orderItem.item.choices) {
+          orderItem.item.choices.forEach(c => {
+            if (c.pickedChoice) {
+              c.pickedChoice.forEach(pc => {
+                sum += parseFloat(pc.price) * orderItem.quantity;
+              })
+            }
+          })
+        }
       });
     }
     // if (this.state.historyCartList.length > 0) {
@@ -191,34 +200,34 @@ export default class ShoppingCart extends Component {
           })}
         </div>
       ) : (
-        <div className="shopping-cart__list-container">
-          {this.state.shoppingCartList.map((orderItem, index) => {
-            return (
-              <OrderItemCard
-                orderItem={orderItem}
-                appMode={this.props.mode}
-                orderId={this.props.orderId}
-                tableNumber={this.props.tableNumber}
-                updateShoppingCartList={this.props.updateShoppingCartList}
-                increaseShoppingCartItem={this.props.increaseShoppingCartItem}
-                decreaseShoppingCartItem={this.props.decreaseShoppingCartItem}
-                key={`orderItemInShoppingCart${index}`}
-                mode={1}
-              />
-            );
-          })}
-          {this.state.historyCartList.map((orderItem, index) => {
-            return (
-              <OrderItemCard
-                app_conf={this.props.app_conf}
-                orderItem={orderItem}
-                key={`historyItemInShoppingCart${index}`}
-                mode={3}
-              />
-            );
-          })}
-        </div>
-      );
+          <div className="shopping-cart__list-container">
+            {this.state.shoppingCartList.map((orderItem, index) => {
+              return (
+                <OrderItemCard
+                  orderItem={orderItem}
+                  appMode={this.props.mode}
+                  orderId={this.props.orderId}
+                  tableNumber={this.props.tableNumber}
+                  updateShoppingCartList={this.props.updateShoppingCartList}
+                  increaseShoppingCartItem={this.props.increaseShoppingCartItem}
+                  decreaseShoppingCartItem={this.props.decreaseShoppingCartItem}
+                  key={`orderItemInShoppingCart${index}`}
+                  mode={1}
+                />
+              );
+            })}
+            {this.state.historyCartList.map((orderItem, index) => {
+              return (
+                <OrderItemCard
+                  app_conf={this.props.app_conf}
+                  orderItem={orderItem}
+                  key={`historyItemInShoppingCart${index}`}
+                  mode={3}
+                />
+              );
+            })}
+          </div>
+        );
 
     return (
       <div>
@@ -285,8 +294,8 @@ export default class ShoppingCart extends Component {
                   this.props.mode === "preorder"
                     ? `/table/public/confirm/${this.props.mode}`
                     : `/table/public/confirm/${this.props.mode}/${
-                        this.props.tableNumber
-                      }/${this.props.orderId}`
+                    this.props.tableNumber
+                    }/${this.props.orderId}`
                 }
                 className="order-item-card__confirm-button"
               >

@@ -87,6 +87,15 @@ export default class Confirm extends Component {
 
     this.state.shoppingCartList.map(orderItem => {
       sum += orderItem.quantity * orderItem.item.price;
+      if (orderItem.item.choices) {
+        orderItem.item.choices.forEach(c => {
+          if (c.pickedChoice) {
+            c.pickedChoice.forEach(pc => {
+              sum += parseFloat(pc.price) * orderItem.quantity;
+            })
+          }
+        })
+      }
     });
 
     return sum.toFixed(2);
@@ -111,7 +120,7 @@ export default class Confirm extends Component {
           this.props.updateHistoryCartList(res.data.historyList);
           this.props.history.push(
             `/table/public/complete/${this.props.match.params.tableId}/${
-              this.props.match.params.orderId
+            this.props.match.params.orderId
             }`
           );
         })
