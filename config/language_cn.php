@@ -60,4 +60,6 @@ return [
     'soldout_notify_when_confirm' => '已售罄，我们已经调整了您的订单，请确定后再次发送，谢谢合作',
     //
     'notifyAlreadySent' => '您的订单已发送',
+    //
+    'size_form_title' => "请选择型号",
 ];

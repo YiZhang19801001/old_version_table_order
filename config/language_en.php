@@ -60,4 +60,6 @@ return [
     'soldout_notify_when_confirm' => 'are sold out, we have adjusted your order, please check and sumbit again.',
     //
     'notifyAlreadySent' => 'your order already has been sent',
+    //
+    'size_form_title' => "choose size",
 ];

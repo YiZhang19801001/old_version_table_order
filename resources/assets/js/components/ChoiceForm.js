@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import _ from "lodash";
 
 import ChoiceGroup from "./ChoiceGroup";
+import SizeGroup from "./SizeGroup"
 
 export default class ChoiceForm extends Component {
   constructor(props) {
@@ -12,21 +13,28 @@ export default class ChoiceForm extends Component {
       pickedOption: "",
       product: { choices: [] },
       pickedChoice: [],
-      isListView: true
+      isListView: true,
+      pickedSize: { size_level: 0 },
     };
 
     this.updateShoppingCartList = this.updateShoppingCartList.bind(this);
     this.updateOrderItemChoice = this.updateOrderItemChoice.bind(this);
+    this.updateOrderItemSize = this.updateOrderItemSize.bind(this);
   }
 
   componentDidMount() {
     this.setState({
-      product: this.props.product
+      product: this.props.product,
+      pickedSize: this.props.product.sizes.length > 0 ? this.props.product.sizes[0] : { size_level: 0 }
     });
   }
 
   componentWillReceiveProps(newProps) {
-    this.setState({ product: newProps.product });
+    this.setState({
+      product: newProps.product,
+      pickedSize: newProps.product.sizes.length > 0 ? newProps.product.sizes[0] : { size_level: 0 }
+
+    });
   }
 
   /**
@@ -43,7 +51,8 @@ export default class ChoiceForm extends Component {
       ...this.state.product,
       choices: this.state.product.choices.map(choice => {
         return { ...choice, pickedChoice: this.state.pickedChoice };
-      })
+      }),
+      pickedSize: this.state.pickedSize
     };
     this.props.updateShoppingCartList(
       true,
@@ -75,8 +84,18 @@ export default class ChoiceForm extends Component {
     }
   }
 
+  /**
+ * set picked size for saving as order item
+ * @param {object} pickedChoice
+ */
+  updateOrderItemSize(pickedSize) {
+    this.setState({ pickedSize })
+  }
+
   render() {
     const imgSrc = `/table/public/images/items/${this.state.product.image}`;
+
+
     return (
       <div>
         <div
@@ -110,20 +129,27 @@ export default class ChoiceForm extends Component {
             </div>
           </div>
           <div className="choice-form__list-container">
-            <div className="choice-form__list-content">
-              {this.state.product.choices.map((choiceGroup, index) => {
-                return (
-                  <ChoiceGroup
-                    key={`sizeGroup${index}`}
-                    choiceGroup={choiceGroup}
-                    updateOrderItemChoice={this.updateOrderItemChoice}
-                    app_conf={this.props.app_conf}
-                    index={index}
-                    isListView={this.state.isListView}
-                  />
-                );
-              })}
-            </div>
+            {this.props.product.sizes.length > 0 && <div className="choice-form__list-content">
+              <div className="choice-group">
+                <div className="choice-group__title">{'Size'}</div>
+                <div className="choice-group__subtitle">
+                  {this.props.app_conf.size_form_title}
+                </div>
+                {this.props.product.sizes.map((size, index) => {
+                  return (
+                    <SizeGroup
+                      key={`sizeGroup${index}`}
+                      size={size}
+                      pickedSize={this.state.pickedSize}
+                      updateOrderItemSize={this.updateOrderItemSize}
+                      app_conf={this.props.app_conf}
+                      index={index}
+                      isListView={this.state.isListView}
+                    />
+                  );
+                })}
+              </div>
+            </div>}
             <div className="choice-form__list-content">
               {this.state.product.choices.map((choiceGroup, index) => {
                 return (

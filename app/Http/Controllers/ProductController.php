@@ -12,6 +12,7 @@ use App\ProductDescription;
 use App\ProductExt;
 use App\ProductOptionValue;
 use App\ProductToCategory;
+use App\Size;
 
 class ProductController extends Controller
 {
@@ -113,7 +114,8 @@ class ProductController extends Controller
                 //details only needed for show options mode
                 if ($mode == 9) {
                     $new_product["choices"] = $this->getChoicesHelper($target_product->product_id, $lang);
-                    $new_product["size"] = [];
+                    $sizes = Size::where("product_id", $target_product->product_id)->orderBy("size_level")->get();
+                    $new_product["sizes"] = $sizes;
                     $new_product["options"] = [];
                 }
 

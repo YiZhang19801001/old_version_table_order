@@ -43,3 +43,5 @@ Route::post('language', 'testController@changeText');
 Route::post('translate', 'ShopcartController@translatePreorderList');
 
 Route::get('setProductImageUrl', 'ProductController@setProductImageUrl');
+
+Route::post('upload', 'SizeController@upload');
