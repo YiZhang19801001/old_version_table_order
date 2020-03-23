@@ -180,6 +180,9 @@ body {
   width: 100vw;
   background-image: url("/table/public/images/layout/banner.png");
   background-size: cover;
+  background-size: 40%;
+  background-repeat: no-repeat;
+  background-position: center;
   color: #fff;
   padding-top: 3px;
   padding-left: 20px;
@@ -199,6 +202,7 @@ body {
   font-size: 32px;
   font-weight: bold;
   color: #ffffff;
+  text-shadow: 0 0 5px #000;
 }
 
 .head .right {
@@ -213,7 +217,7 @@ body {
   width: 24px;
   height: 24px;
   border-radius: 3px;
-  border: 1px solid #fff;
+  border: 1px solid #8c8c8c;
   text-align: center;
   padding: 1px 4px;
 }
@@ -223,7 +227,7 @@ body {
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
-  color: #ffffff;
+  color: #8c8c8c;
 }
 
 .product-card {
