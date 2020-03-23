@@ -74949,19 +74949,73 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Upload = function (_React$Component) {
     _inherits(Upload, _React$Component);
 
-    function Upload() {
+    function Upload(props) {
         _classCallCheck(this, Upload);
 
-        return _possibleConstructorReturn(this, (Upload.__proto__ || Object.getPrototypeOf(Upload)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Upload.__proto__ || Object.getPrototypeOf(Upload)).call(this, props));
+
+        _this.state = {
+            loading: false,
+            loadingText: '正在导入',
+            result: '',
+            files: []
+        };
+
+        _this.uploadSizes = _this.uploadSizes.bind(_this);
+        return _this;
     }
 
     _createClass(Upload, [{
+        key: "uploadSizes",
+        value: function uploadSizes(e) {
+            var _this2 = this;
+
+            e.preventDefault();
+            if (this.state.files[0]) {
+                this.setState({ loading: true, loadingText: '正在导入' });
+                var formData = new FormData();
+                formData.append('size_file', this.state.files[0]);
+                __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post("/table/public/api/upload", formData).then(function (res) {
+                    _this2.setState({ loading: false, loadingText: '' });
+                    if (res.data.code === '0') {
+                        _this2.setState({ result: "\u5F55\u5165\u6570\u636E\u6210\u529F,\u65B0\u5EFA" + res.data.created + "\u6761\uFF0C\u66F4\u65B0" + res.data.updated + "\u6761" });
+                    } else {
+                        _this2.setState({ result: "\u5F55\u5165\u6570\u636E\u5931\u8D25," + res.data.message });
+                    }
+                }).catch(function (err) {
+                    _this2.setState({ loading: false, loadingText: '', result: "\u5F55\u5165\u6570\u636E\u5931\u8D25," + err.response.data.message });
+                });
+            }
+        }
+    }, {
         key: "render",
         value: function render() {
+            var _this3 = this;
+
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "div",
                 null,
-                "upload page"
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+                    name: "",
+                    type: "file",
+                    id: "sizesXls",
+                    onChange: function onChange(e) {
+                        _this3.setState({ files: e.target.files });
+                    },
+                    accept: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "button",
+                    {
+                        onClick: this.uploadSizes
+                    },
+                    "\u5F00\u59CB\u4E0A\u4F20"
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "p",
+                    null,
+                    this.state.result
+                )
             );
         }
     }]);

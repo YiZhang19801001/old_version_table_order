@@ -29,8 +29,9 @@ class SizeController extends Controller
     {
         try {
             # read inputs from request
-            $collections = Excel::toCollection(new SizeImports, request()->file('your_file'));
-
+            $collections = Excel::toCollection(new SizeImports, request()->file('size_file'));
+            $countUpdated = 0;
+            $countCreated = 0;
             # only deal with the first sheet in the excel file which is $collections[0]
             foreach ($collections[0] as $row) {
                 // count($row) return the header length of a row
@@ -50,6 +51,7 @@ class SizeController extends Controller
                                     "name" => $row["custom" . $i],
                                     "price" => $row["sell" . $i],
                                 ]);
+                                $countUpdated++;
                             } else {
 
                                 Size::create([
@@ -59,6 +61,7 @@ class SizeController extends Controller
                                     "price" => $row["sell" . $i],
                                     "size_level" => $i,
                                 ]);
+                                $countCreated++;
                             }
                         }
 
@@ -66,7 +69,7 @@ class SizeController extends Controller
                 }
             }
 
-            return response()->json(["code" => "0", "message" => "success"], 200);
+            return response()->json(["code" => "0", "message" => "success", "created" => $countCreated, "updated" => $countUpdated], 200);
         } catch (\Throwable $th) {
             return response()->json(["code" => "9000", "message" => $th->getMessage()], 400);
         }
