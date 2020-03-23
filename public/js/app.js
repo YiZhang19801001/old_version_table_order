@@ -25978,7 +25978,7 @@ var OrderItemCard = function (_Component) {
     value: function getTotalPrice() {
       var _this2 = this;
 
-      var resPrice = this.state.orderItem.item.price;
+      var resPrice = this.state.orderItem.item.pickedSize ? this.state.orderItem.item.pickedSize.price : this.state.orderItem.item.price;
       var orderItem = this.state.orderItem.item;
 
       // this.state.orderItem.item.choices.map(choice)
@@ -26060,7 +26060,9 @@ var OrderItemCard = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "span",
             { className: "order-item-card__item-name" },
-            this.state.orderItem.item.name
+            this.state.orderItem.item.name,
+            " ",
+            this.state.orderItem.item.pickedSize ? "(" + this.state.orderItem.item.pickedSize.name.toUpperCase() + "-$" + parseFloat(this.state.orderItem.item.pickedSize.price).toFixed(2) + ")" : null
           ),
           this.state.orderItem.item.choices.map(function (choice, index) {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -71627,6 +71629,7 @@ var ProductCard = function (_Component) {
     _this.closeChoiceForm = _this.closeChoiceForm.bind(_this);
     _this.getProductQtyInOrderList = _this.getProductQtyInOrderList.bind(_this);
     _this.changePicSize = _this.changePicSize.bind(_this);
+    _this.getPriceRange = _this.getPriceRange.bind(_this);
     return _this;
   }
 
@@ -71698,6 +71701,14 @@ var ProductCard = function (_Component) {
     key: "decrease",
     value: function decrease() {
       this.props.updateShoppingCartList(true, this.props.product, this.props.mode, "sub", this.props.orderId, this.props.tableNumber);
+    }
+  }, {
+    key: "getPriceRange",
+    value: function getPriceRange() {
+
+      var sizeLength = this.props.product.sizes.length;
+
+      return "$" + parseFloat(this.props.product.sizes[0].price).toFixed(2) + " - $" + parseFloat(this.props.product.sizes[sizeLength - 1].price).toFixed(2);
     }
   }, {
     key: "render",
@@ -71773,8 +71784,7 @@ var ProductCard = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "div",
               { className: "price" },
-              "$",
-              this.props.product.price
+              this.props.product.sizes.length > 0 ? "$" + parseFloat(this.props.product.sizes[0].price).toFixed(2) : "$" + this.props.product.price
             ),
             this.props.mode !== "menu" ? Control_Pannel : null
           )
@@ -72476,7 +72486,8 @@ var ShoppingCart = function (_Component) {
       var sum = 0;
       if (this.state.shoppingCartList.length > 0) {
         this.state.shoppingCartList.forEach(function (orderItem) {
-          sum += orderItem.item.price * orderItem.quantity;
+          var resPrice = orderItem.item.pickedSize ? orderItem.item.pickedSize.price : orderItem.item.price;
+          sum += resPrice * orderItem.quantity;
           if (orderItem.item.choices) {
             orderItem.item.choices.forEach(function (c) {
               if (c.pickedChoice) {
@@ -72777,11 +72788,12 @@ var Confirm = function (_Component) {
     key: "createQrCode",
     value: function createQrCode() {
       var qr = "=QROD=";
-      if (this.state.shoppingCartList !== null || this.state.shoppingCartList.length !== 0) {
+      if (this.state.shoppingCartList !== null && this.state.shoppingCartList.length !== 0) {
         this.state.shoppingCartList.forEach(function (el) {
           qr = qr + el.item.upc + ",";
           qr = qr + el.quantity + ",";
-          qr = qr + el.pickedSize || 0 + ";";
+          qr = qr + (el.item.pickedSize ? el.item.pickedSize.size_level : 0) + ";";
+
           el.item.choices.forEach(function (choice) {
             if (choice.pickedChoice !== null) {
               choice.pickedChoice.forEach(function (ele) {
@@ -72794,7 +72806,7 @@ var Confirm = function (_Component) {
           });
           //qr = qr + "0" + ";";
         });
-        this.QrValue = qr.substr(0, qr.length - 1);
+        this.QrValue = qr;
       } else {
         this.QrValue = qr;
       }
@@ -72807,7 +72819,8 @@ var Confirm = function (_Component) {
       var sum = 0;
 
       this.state.shoppingCartList.map(function (orderItem) {
-        sum += orderItem.quantity * orderItem.item.price;
+        var resPrice = orderItem.item.pickedSize ? orderItem.item.pickedSize.price : orderItem.item.price;
+        sum += resPrice * orderItem.quantity;
         if (orderItem.item.choices) {
           orderItem.item.choices.forEach(function (c) {
             if (c.pickedChoice) {

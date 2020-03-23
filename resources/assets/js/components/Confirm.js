@@ -55,13 +55,14 @@ export default class Confirm extends Component {
   createQrCode() {
     let qr = "=QROD=";
     if (
-      this.state.shoppingCartList !== null ||
+      this.state.shoppingCartList !== null &&
       this.state.shoppingCartList.length !== 0
     ) {
       this.state.shoppingCartList.forEach(el => {
         qr = qr + el.item.upc + ",";
         qr = qr + el.quantity + ",";
-        qr = qr + el.pickedSize || 0 + ";";
+        qr = qr + (el.item.pickedSize ? el.item.pickedSize.size_level : 0) + ";";
+
         el.item.choices.forEach(choice => {
           if (choice.pickedChoice !== null) {
             choice.pickedChoice.forEach(ele => {
@@ -74,7 +75,7 @@ export default class Confirm extends Component {
         });
         //qr = qr + "0" + ";";
       });
-      this.QrValue = qr.substr(0, qr.length - 1);
+      this.QrValue = qr;
     } else {
       this.QrValue = qr;
     }
@@ -86,7 +87,8 @@ export default class Confirm extends Component {
     let sum = 0;
 
     this.state.shoppingCartList.map(orderItem => {
-      sum += orderItem.quantity * orderItem.item.price;
+      let resPrice = orderItem.item.pickedSize ? orderItem.item.pickedSize.price : orderItem.item.price;
+      sum += resPrice * orderItem.quantity;
       if (orderItem.item.choices) {
         orderItem.item.choices.forEach(c => {
           if (c.pickedChoice) {

@@ -23,6 +23,7 @@ export default class ProductCard extends Component {
     this.closeChoiceForm = this.closeChoiceForm.bind(this);
     this.getProductQtyInOrderList = this.getProductQtyInOrderList.bind(this);
     this.changePicSize = this.changePicSize.bind(this);
+    this.getPriceRange = this.getPriceRange.bind(this);
   }
 
   componentDidMount() {
@@ -105,10 +106,18 @@ export default class ProductCard extends Component {
       this.props.tableNumber
     );
   }
+
+  getPriceRange() {
+
+    const sizeLength = this.props.product.sizes.length;
+
+    return `$${parseFloat(this.props.product.sizes[0].price).toFixed(2)} - $${parseFloat(this.props.product.sizes[sizeLength - 1].price).toFixed(2)}`
+  }
+
   render() {
     const isSimpleProduct =
       this.props.product.options.length == 0 &&
-      this.props.product.choices.length == 0
+        this.props.product.choices.length == 0
         ? true
         : false;
 
@@ -130,15 +139,15 @@ export default class ProductCard extends Component {
           </div>
         </div>
       ) : (
-        <div className="control-pannel">
-          <div className="btn-plus-only">
-            <ButtonIncrease
-              onClick={isSimpleProduct ? this.increase : this.makeChoice}
-              mode="fill"
-            />
+          <div className="control-pannel">
+            <div className="btn-plus-only">
+              <ButtonIncrease
+                onClick={isSimpleProduct ? this.increase : this.makeChoice}
+                mode="fill"
+              />
+            </div>
           </div>
-        </div>
-      );
+        );
     return (
       <div className="product-card">
         {this.state.isZoomInPic ? (
@@ -158,7 +167,12 @@ export default class ProductCard extends Component {
         <div className="product-info">
           <div className="product-name">{this.props.product.name}</div>
           <div className="price-quantity">
-            <div className="price">${this.props.product.price}</div>
+            <div className="price">
+
+              {this.props.product.sizes.length > 0 ? `$${parseFloat(this.props.product.sizes[0].price).toFixed(2)}` : `$${this.props.product.price}`}
+
+
+            </div>
             {this.props.mode !== "menu" ? Control_Pannel : null}
           </div>
         </div>
