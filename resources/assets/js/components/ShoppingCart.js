@@ -121,7 +121,7 @@ export default class ShoppingCart extends Component {
     let sum = 0;
     if (this.state.shoppingCartList.length > 0) {
       this.state.shoppingCartList.forEach(orderItem => {
-        let resPrice = orderItem.item.pickedSize ? orderItem.item.pickedSize.price : orderItem.item.price;
+        let resPrice = (orderItem.item.pickedSize && orderItem.item.pickedSize.size_level !== 0) ? orderItem.item.pickedSize.price : orderItem.item.price;
         sum += resPrice * orderItem.quantity;
         if (orderItem.item.choices) {
           orderItem.item.choices.forEach(c => {

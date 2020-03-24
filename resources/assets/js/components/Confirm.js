@@ -87,7 +87,7 @@ export default class Confirm extends Component {
     let sum = 0;
 
     this.state.shoppingCartList.map(orderItem => {
-      let resPrice = orderItem.item.pickedSize ? orderItem.item.pickedSize.price : orderItem.item.price;
+      let resPrice = (orderItem.item.pickedSize && orderItem.item.pickedSize.size_level !== 0) ? orderItem.item.pickedSize.price : orderItem.item.price;
       sum += resPrice * orderItem.quantity;
       if (orderItem.item.choices) {
         orderItem.item.choices.forEach(c => {
