@@ -348,7 +348,6 @@ body {
     justify-content: center;
     align-items: center;
     .choice-form__confirm-button {
-      width: 72px;
       height: 26px;
       line-height: 26px;
       text-align: center;
@@ -357,6 +356,7 @@ body {
       font-weight: 600;
       border-radius: 3px;
       background-color: $yellow;
+      padding: 0 1rem;
     }
   }
 }
