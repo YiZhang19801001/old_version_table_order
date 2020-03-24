@@ -179,8 +179,7 @@ body {
   height: 11vh;
   width: 100vw;
   background-image: url("/table/public/images/layout/banner.png");
-  background-size: cover;
-  background-size: 40%;
+  background-size: 13%;
   background-repeat: no-repeat;
   background-position: center;
   color: #fff;
@@ -191,6 +190,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   border-bottom: 3px solid #ffffff;
+  background-color: #FFF;
 }
 
 .head .left {
@@ -249,6 +249,9 @@ body {
   width: 70px;
   height: 46px;
   border-radius: 3px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  background-color: white;
 }
 
 .product-card .img-xl-container {
@@ -426,6 +429,9 @@ body {
   width: 70px;
   height: 46px;
   border-radius: 3px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  background-color: white;
 }
 
 .choice-form .header .choice-form-product-info {
@@ -893,6 +899,15 @@ input:checked
   background-color: #b4b4b4;
   color: #FFF;
   opacity: 0.6;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .size-group__container .size-group .size-group__content.active {
@@ -931,6 +946,9 @@ input:checked
   width: 56px;
   height: 37px;
   border-radius: 3px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  background-color: #FFF;
 }
 
 .order-item-card .order-item-card__info-container {

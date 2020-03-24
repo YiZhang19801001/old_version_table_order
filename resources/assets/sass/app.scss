@@ -133,8 +133,8 @@ body {
   height: 11vh;
   width: 100vw;
   background-image: url("/table/public/images/layout/banner.png");
-  background-size: cover;
-  background-size: 40%;
+
+  background-size: 13%;
   background-repeat: no-repeat;
   background-position: center;
   color: #fff;
@@ -143,6 +143,7 @@ body {
   padding-right: 16px;
   align-items: center;
   border-bottom: 3px solid #ffffff;
+  background-color: #FFF;
   .left {
     flex: 2;
     height: 39px;
@@ -188,6 +189,8 @@ body {
       width: 70px;
       height: 46px;
       border-radius: 3px;
+      object-fit: contain;
+      background-color: white;
     }
   }
   .img-xl-container {
@@ -304,6 +307,8 @@ body {
         width: 70px;
         height: 46px;
         border-radius: 3px;
+        object-fit: contain;
+        background-color: white;
       }
     }
     .choice-form-product-info {
@@ -661,6 +666,9 @@ body {
       background-color: $grey_3;
       color:#FFF;
       opacity: 0.6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       &.active{
         opacity: 1;
         background-color: $yellow;
@@ -686,6 +694,8 @@ body {
       width: 56px;
       height: 37px;
       border-radius: 3px;
+      object-fit: contain;
+      background-color: #FFF;
     }
   }
   .order-item-card__info-container {

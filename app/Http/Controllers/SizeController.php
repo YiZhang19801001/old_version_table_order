@@ -64,14 +64,22 @@ class SizeController extends Controller
                                 $countCreated++;
                             }
                         }
-
                     }
                 }
             }
 
-            return response()->json(["code" => "0", "message" => "success", "created" => $countCreated, "updated" => $countUpdated], 200);
+            return response()->json([
+                "code" => "0",
+                "message" => "success",
+                "created" => $countCreated,
+                "updated" => $countUpdated,
+            ], 200);
+
         } catch (\Throwable $th) {
-            return response()->json(["code" => "9000", "message" => $th->getMessage()], 400);
+            return response()->json([
+                "code" => "9000",
+                "message" => $th->getMessage(),
+            ], 400);
         }
     }
 
