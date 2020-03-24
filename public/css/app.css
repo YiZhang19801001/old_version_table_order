@@ -1304,7 +1304,6 @@ input:checked
 }
 
 .confirm .confirm__back-button-container .confirm__back-button {
-  width: 99px;
   line-height: 28px;
   height: 28px;
   border-radius: 3px;
@@ -1314,6 +1313,7 @@ input:checked
   font-weight: 600;
   color: #ffffff;
   text-decoration: none;
+  padding: 0 1rem;
 }
 
 .confirm .confirm__footer {
