@@ -181,7 +181,7 @@ body {
   background-image: url("/table/public/images/layout/banner.png");
   background-size: 13%;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: 10% 100%;
   color: #fff;
   padding-top: 3px;
   padding-left: 20px;
@@ -203,6 +203,7 @@ body {
   font-weight: bold;
   color: #ffffff;
   text-shadow: 0 0 5px #000;
+  margin-left: 5rem;
 }
 
 .head .right {
@@ -220,6 +221,7 @@ body {
   border: 1px solid #8c8c8c;
   text-align: center;
   padding: 1px 4px;
+  display: none;
 }
 
 .head .right .button .label {
@@ -1470,6 +1472,9 @@ input:checked
   margin-top: 10px;
   border-radius: 5px;
   margin-bottom: 21px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  background-color: #FFF;
 }
 
 .component-product-details__container {
