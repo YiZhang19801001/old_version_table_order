@@ -13,9 +13,9 @@ return [
     'QrImageUrl' => "/table/public/images/logo.png",
 
     // default language setting [1] = cn [2] = en
-    'default_language' => 1,
+    'default_language' => env('DEFAULT_LANGUAGE', 1),
     // count how many language is available if equal(1) do not show the language switch button
-    'countLanguage' => 2,
+    'countLanguage' => env('NUMBER_OF_LANGUAGES', 2),
     // clock list
     'block_list' => [],
     // Qrcode expired duration
