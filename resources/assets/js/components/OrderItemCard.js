@@ -23,7 +23,7 @@ export default class OrderItemCard extends Component {
   }
 
   getTotalPrice() {
-    let resPrice = this.state.orderItem.item.pickedSize ? this.state.orderItem.item.pickedSize.price : this.state.orderItem.item.price;
+    let resPrice = this.state.orderItem.item.pickedSize.size_level !== 0 ? this.state.orderItem.item.pickedSize.price : this.state.orderItem.item.price;
     let orderItem = this.state.orderItem.item;
 
     // this.state.orderItem.item.choices.map(choice)

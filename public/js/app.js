@@ -26062,7 +26062,7 @@ var OrderItemCard = function (_Component) {
             { className: "order-item-card__item-name" },
             this.state.orderItem.item.name,
             " ",
-            this.state.orderItem.item.pickedSize ? "(" + this.state.orderItem.item.pickedSize.name.toUpperCase() + "-$" + parseFloat(this.state.orderItem.item.pickedSize.price).toFixed(2) + ")" : null
+            this.state.orderItem.item.pickedSize.size_level !== 0 ? "(" + this.state.orderItem.item.pickedSize.name.toUpperCase() + "-$" + parseFloat(this.state.orderItem.item.pickedSize.price).toFixed(2) + ")" : null
           ),
           this.state.orderItem.item.choices.map(function (choice, index) {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
