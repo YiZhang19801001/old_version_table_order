@@ -25978,7 +25978,7 @@ var OrderItemCard = function (_Component) {
     value: function getTotalPrice() {
       var _this2 = this;
 
-      var resPrice = this.state.orderItem.item.pickedSize ? this.state.orderItem.item.pickedSize.price : this.state.orderItem.item.price;
+      var resPrice = this.state.orderItem.item.pickedSize.size_level !== 0 ? this.state.orderItem.item.pickedSize.price : this.state.orderItem.item.price;
       var orderItem = this.state.orderItem.item;
 
       // this.state.orderItem.item.choices.map(choice)
