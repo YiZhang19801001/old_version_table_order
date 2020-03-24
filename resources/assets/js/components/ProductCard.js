@@ -116,8 +116,9 @@ export default class ProductCard extends Component {
 
   render() {
     const isSimpleProduct =
-      this.props.product.options.length == 0 &&
-        this.props.product.choices.length == 0
+      this.props.product.options.length == 0
+        && this.props.product.choices.length == 0
+        && this.props.product.sizes == 0
         ? true
         : false;
 

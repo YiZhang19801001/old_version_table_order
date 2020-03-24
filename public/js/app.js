@@ -71715,7 +71715,7 @@ var ProductCard = function (_Component) {
     value: function render() {
       var _this3 = this;
 
-      var isSimpleProduct = this.props.product.options.length == 0 && this.props.product.choices.length == 0 ? true : false;
+      var isSimpleProduct = this.props.product.options.length == 0 && this.props.product.choices.length == 0 && this.props.product.sizes == 0 ? true : false;
 
       var Control_Pannel = this.state.quantity > 0 ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "div",

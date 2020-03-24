@@ -99,7 +99,7 @@ export default class ChoiceGroup extends Component {
                       style={{
                         backgroundImage: `url("/table/public/images/items/${
                           choice.image
-                        }")`
+                          }")`
                       }}
                     />
                     <div className={this.state.choiceClass.iconCover} />
