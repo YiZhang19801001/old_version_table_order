@@ -13,7 +13,7 @@ class InitController extends Controller
         /**create config file */
         //$language_id = config("app.lang");
 
-        $language_id = $lang != "null" ? $lang : config("app.default_language");
+        $language_id = $lang != "1" ? $lang : config("app.default_language");
 
         /** mapping values for app_conf */
 

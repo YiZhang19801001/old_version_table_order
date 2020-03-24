@@ -22,7 +22,7 @@ class CategoryController extends Controller
         //fetch category_descriptions from database
         $categories_ids = CategoryDescription::select('category_id')->distinct()->get();
 
-        if ($lang == "null") {
+        if ($lang == "null" || $lang == "1") {
             $lang = \Config::get('app.default_language');
         }
 

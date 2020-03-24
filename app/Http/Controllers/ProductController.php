@@ -26,7 +26,7 @@ class ProductController extends Controller
     public function index($lang)
     {
 
-        if ($lang == "null") {
+        if ($lang == "null" || $lang == "1") {
             $lang = \Config::get('app.default_language');
 
         }
