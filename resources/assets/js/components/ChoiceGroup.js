@@ -38,10 +38,10 @@ export default class ChoiceGroup extends Component {
     }
   }
 
-  setChoice(e) {
+  setChoice(choice, action) {
     this.props.updateOrderItemChoice(
-      JSON.parse(e.target.value),
-      e.target.checked
+      choice,
+      action
     );
   }
 
@@ -74,45 +74,21 @@ export default class ChoiceGroup extends Component {
   render() {
     // const imgSrc = `url("/table/public/images/items/${this.props.imgSrc}")`;
     return (
-      <div className="choice-group">
-        <div className="choice-group__title">{this.props.choiceGroup.type}</div>
-        <div className="choice-group__subtitle">
+      <div className="size-group__container">
+        <div className="size-group__title">{this.props.choiceGroup.type}</div>
+        <div className="size-group__subtitle">
           {this.props.app_conf.choice_form_title}
         </div>
-        <div className="choice-group__content">
+        <div className="size-group">
           {this.props.choiceGroup.choices.map((choice, index) => {
+            const isActive = this.props.pickedChoice.find(pc => pc.product_ext_id === choice.product_ext_id)
             return (
               <div
                 key={`choiceTag${index}`}
-                className={this.state.choiceClass.contentWrapper}
+                className={`size-group__content ${isActive ? 'active' : ''}`}
+                onClick={() => { this.setChoice(choice, !isActive) }}
               >
-                <label className="choice-group__content-container">
-                  <input
-                    type="checkbox"
-                    name={this.props.choiceGroup.type}
-                    value={JSON.stringify(choice)}
-                    onChange={this.setChoice}
-                  />
-                  <span className={this.state.choiceClass.checkMarkWrap}>
-                    <span
-                      className={this.state.choiceClass.checkMark}
-                      style={{
-                        backgroundImage: `url("/table/public/images/items/${
-                          choice.image
-                          }")`
-                      }}
-                    />
-                    <div className={this.state.choiceClass.iconCover} />
-                  </span>
-                </label>
-                <span className={this.state.choiceClass.choiceInfo}>
-                  <span className="choice-group__choice-name">
-                    {choice.name}
-                  </span>
-                  <span className="choice-group__choice-price">
-                    {parseInt(choice.price) === 0 ? "free" : choice.price}
-                  </span>
-                </span>
+                {choice.name} {parseInt(choice.price) === 0 ? "free" : `$${choice.price}`}
               </div>
             );
           })}

@@ -50,7 +50,8 @@ export default class ChoiceForm extends Component {
     const orderItem = {
       ...this.state.product,
       choices: this.state.product.choices.map(choice => {
-        return { ...choice, pickedChoice: this.state.pickedChoice };
+
+        return { ...choice, pickedChoice: this.state.pickedChoice.filter(x => choice.choices.find(y => y.product_ext_id == x.product_ext_id)) };
       }),
       pickedSize: this.state.pickedSize
     };
@@ -71,6 +72,8 @@ export default class ChoiceForm extends Component {
    * @param {boolean} action
    */
   updateOrderItemChoice(pickedChoice, action) {
+    console.log({ pickedChoice, action });
+
     if (action) {
       this.setState({
         pickedChoice: [...this.state.pickedChoice, pickedChoice]
@@ -129,8 +132,9 @@ export default class ChoiceForm extends Component {
             </div>
           </div>
           <div className="choice-form__list-container">
-            {this.props.product.sizes.length > 0 && <div className="choice-form__list-content">
-              <div className="size-group__container">
+            <div className="choice-form__list-content">
+
+              {this.props.product.sizes.length > 0 && <div className="size-group__container">
                 <div className="size-group__title">{'Size'}</div>
                 <div className="size-group__subtitle">
                   {this.props.app_conf.size_form_title}
@@ -151,14 +155,14 @@ export default class ChoiceForm extends Component {
                   })}
                 </div>
               </div>
-            </div>}
-            <div className="choice-form__list-content">
+              }
               {this.state.product.choices.map((choiceGroup, index) => {
                 return (
                   <ChoiceGroup
                     key={`choiceGroup${index}`}
                     choiceGroup={choiceGroup}
                     updateOrderItemChoice={this.updateOrderItemChoice}
+                    pickedChoice={this.state.pickedChoice}
                     app_conf={this.props.app_conf}
                     index={index}
                     isListView={this.state.isListView}

@@ -86,6 +86,8 @@ export default class Confirm extends Component {
   getTotalPrice() {
     let sum = 0;
 
+    console.log(this.state.shoppingCartList)
+
     this.state.shoppingCartList.map(orderItem => {
       let resPrice = (orderItem.item.pickedSize && orderItem.item.pickedSize.size_level !== 0) ? orderItem.item.pickedSize.price : orderItem.item.price;
       sum += resPrice * orderItem.quantity;

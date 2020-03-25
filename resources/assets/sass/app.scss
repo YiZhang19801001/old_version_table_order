@@ -281,13 +281,13 @@ body {
   background-color: $cover;
 }
 .choice-form {
-  position: fixed;
+  position: absolute;
   top: 20vh;
   left: 10vw;
   width: 80vw;
   height: 65vh;
   background-color: #fff;
-  overflow: scroll;
+  overflow: hidden;
   border-radius: 3px;
   z-index: 500;
   .header {
@@ -296,6 +296,12 @@ body {
     height: 12vh;
     justify-content: space-between;
     padding: 14px 9px;
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    z-index: 100;
+
     .choice-form-img-container {
       flex: 1;
       margin-right: 3px;
@@ -334,11 +340,12 @@ body {
     }
   }
   .choice-form__list-container {
+    margin-top: 12vh;
     height: 45vh;
     overflow: scroll;
     .choice-form__list-content {
-      // height: 45vh;
-      // overflow: scroll;
+      padding-bottom: 8vh;
+      min-height: 101%;
     }
   }
   .choice-form__confirm-button-container {
@@ -347,6 +354,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    left: 0;
+    bottom: 0;
     .choice-form__confirm-button {
       height: 26px;
       line-height: 26px;
@@ -669,6 +679,9 @@ body {
       display: flex;
       align-items: center;
       justify-content: center;
+      font-family: sans-serif;
+      font-size: 0.75rem;
+      padding:0.2rem 0.5rem;
       &.active{
         opacity: 1;
         background-color: $yellow;

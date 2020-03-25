@@ -383,13 +383,13 @@ body {
 }
 
 .choice-form {
-  position: fixed;
+  position: absolute;
   top: 20vh;
   left: 10vw;
   width: 80vw;
   height: 65vh;
   background-color: #fff;
-  overflow: scroll;
+  overflow: hidden;
   border-radius: 3px;
   z-index: 500;
 }
@@ -404,6 +404,11 @@ body {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 14px 9px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
 }
 
 .choice-form .header .choice-form-img-container {
@@ -469,8 +474,14 @@ body {
 }
 
 .choice-form .choice-form__list-container {
+  margin-top: 12vh;
   height: 45vh;
   overflow: scroll;
+}
+
+.choice-form .choice-form__list-container .choice-form__list-content {
+  padding-bottom: 8vh;
+  min-height: 101%;
 }
 
 .choice-form .choice-form__confirm-button-container {
@@ -485,6 +496,9 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
 }
 
 .choice-form .choice-form__confirm-button-container .choice-form__confirm-button {
@@ -909,6 +923,9 @@ input:checked
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  font-family: sans-serif;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
 }
 
 .size-group__container .size-group .size-group__content.active {

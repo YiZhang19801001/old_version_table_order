@@ -166,8 +166,6 @@ class ProductController extends Controller
                 $choices_item["image"] = "";
                 if ($choice->image === null || !file_exists($_SERVER['DOCUMENT_ROOT'] . $image_path)) {
                     $choices_item["image"] = 'default_taste.png';
-                    // $new_product["image"] = '24.jpg';
-
                 } else {
 
                     $choices_item["image"] = $choice->image;

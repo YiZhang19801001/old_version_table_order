@@ -71895,7 +71895,12 @@ var ChoiceForm = function (_Component) {
 
       var orderItem = _extends({}, this.state.product, {
         choices: this.state.product.choices.map(function (choice) {
-          return _extends({}, choice, { pickedChoice: _this2.state.pickedChoice });
+
+          return _extends({}, choice, { pickedChoice: _this2.state.pickedChoice.filter(function (x) {
+              return choice.choices.find(function (y) {
+                return y.product_ext_id == x.product_ext_id;
+              });
+            }) });
         }),
         pickedSize: this.state.pickedSize
       });
@@ -71912,6 +71917,8 @@ var ChoiceForm = function (_Component) {
   }, {
     key: "updateOrderItemChoice",
     value: function updateOrderItemChoice(pickedChoice, action) {
+      console.log({ pickedChoice: pickedChoice, action: action });
+
       if (action) {
         this.setState({
           pickedChoice: [].concat(_toConsumableArray(this.state.pickedChoice), [pickedChoice])
@@ -71997,10 +72004,10 @@ var ChoiceForm = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "div",
             { className: "choice-form__list-container" },
-            this.props.product.sizes.length > 0 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "div",
               { className: "choice-form__list-content" },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              this.props.product.sizes.length > 0 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "div",
                 { className: "size-group__container" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -72028,16 +72035,13 @@ var ChoiceForm = function (_Component) {
                     });
                   })
                 )
-              )
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "div",
-              { className: "choice-form__list-content" },
+              ),
               this.state.product.choices.map(function (choiceGroup, index) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__ChoiceGroup__["a" /* default */], {
                   key: "choiceGroup" + index,
                   choiceGroup: choiceGroup,
                   updateOrderItemChoice: _this3.updateOrderItemChoice,
+                  pickedChoice: _this3.state.pickedChoice,
                   app_conf: _this3.props.app_conf,
                   index: index,
                   isListView: _this3.state.isListView
@@ -72131,8 +72135,8 @@ var ChoiceGroup = function (_Component) {
     }
   }, {
     key: "setChoice",
-    value: function setChoice(e) {
-      this.props.updateOrderItemChoice(JSON.parse(e.target.value), e.target.checked);
+    value: function setChoice(choice, action) {
+      this.props.updateOrderItemChoice(choice, action);
     }
   }, {
     key: "toggleListView",
@@ -72169,62 +72173,36 @@ var ChoiceGroup = function (_Component) {
       // const imgSrc = `url("/table/public/images/items/${this.props.imgSrc}")`;
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "div",
-        { className: "choice-group" },
+        { className: "size-group__container" },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "div",
-          { className: "choice-group__title" },
+          { className: "size-group__title" },
           this.props.choiceGroup.type
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "div",
-          { className: "choice-group__subtitle" },
+          { className: "size-group__subtitle" },
           this.props.app_conf.choice_form_title
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "div",
-          { className: "choice-group__content" },
+          { className: "size-group" },
           this.props.choiceGroup.choices.map(function (choice, index) {
+            var isActive = _this2.props.pickedChoice.find(function (pc) {
+              return pc.product_ext_id === choice.product_ext_id;
+            });
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "div",
               {
                 key: "choiceTag" + index,
-                className: _this2.state.choiceClass.contentWrapper
+                className: "size-group__content " + (isActive ? 'active' : ''),
+                onClick: function onClick() {
+                  _this2.setChoice(choice, !isActive);
+                }
               },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "label",
-                { className: "choice-group__content-container" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
-                  type: "checkbox",
-                  name: _this2.props.choiceGroup.type,
-                  value: JSON.stringify(choice),
-                  onChange: _this2.setChoice
-                }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  "span",
-                  { className: _this2.state.choiceClass.checkMarkWrap },
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", {
-                    className: _this2.state.choiceClass.checkMark,
-                    style: {
-                      backgroundImage: "url(\"/table/public/images/items/" + choice.image + "\")"
-                    }
-                  }),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: _this2.state.choiceClass.iconCover })
-                )
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "span",
-                { className: _this2.state.choiceClass.choiceInfo },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  "span",
-                  { className: "choice-group__choice-name" },
-                  choice.name
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  "span",
-                  { className: "choice-group__choice-price" },
-                  parseInt(choice.price) === 0 ? "free" : choice.price
-                )
-              )
+              choice.name,
+              " ",
+              parseInt(choice.price) === 0 ? "free" : "$" + choice.price
             );
           })
         )
@@ -72821,6 +72799,8 @@ var Confirm = function (_Component) {
     key: "getTotalPrice",
     value: function getTotalPrice() {
       var sum = 0;
+
+      console.log(this.state.shoppingCartList);
 
       this.state.shoppingCartList.map(function (orderItem) {
         var resPrice = orderItem.item.pickedSize && orderItem.item.pickedSize.size_level !== 0 ? orderItem.item.pickedSize.price : orderItem.item.price;
