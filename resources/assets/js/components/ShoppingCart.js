@@ -119,12 +119,13 @@ export default class ShoppingCart extends Component {
    */
   getOrderTotalPrice() {
     let sum = 0;
-    let discountItems = 0;
 
     if (this.state.shoppingCartList.length > 0) {
       this.state.shoppingCartList.forEach(orderItem => {
         let resPrice = (orderItem.item.pickedSize && orderItem.item.pickedSize.size_level !== 0) ? orderItem.item.pickedSize.price : orderItem.item.price;
         sum += resPrice * orderItem.quantity;
+        let discountItems = 0;
+
         if (orderItem.item.choices) {
           orderItem.item.choices.forEach(c => {
             if (c.pickedChoice) {
@@ -137,6 +138,7 @@ export default class ShoppingCart extends Component {
             }
           })
         }
+        sum -= parseInt(discountItems / 2) * 0.2
       });
     }
     // if (this.state.historyCartList.length > 0) {
@@ -145,7 +147,7 @@ export default class ShoppingCart extends Component {
     //   });
     // }
 
-    sum -= parseInt(discountItems / 2) * 0.2
+
 
     return sum.toFixed(2);
   }

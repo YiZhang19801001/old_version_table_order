@@ -72467,12 +72467,13 @@ var ShoppingCart = function (_Component) {
     key: "getOrderTotalPrice",
     value: function getOrderTotalPrice() {
       var sum = 0;
-      var discountItems = 0;
 
       if (this.state.shoppingCartList.length > 0) {
         this.state.shoppingCartList.forEach(function (orderItem) {
           var resPrice = orderItem.item.pickedSize && orderItem.item.pickedSize.size_level !== 0 ? orderItem.item.pickedSize.price : orderItem.item.price;
           sum += resPrice * orderItem.quantity;
+          var discountItems = 0;
+
           if (orderItem.item.choices) {
             orderItem.item.choices.forEach(function (c) {
               if (c.pickedChoice) {
@@ -72485,6 +72486,7 @@ var ShoppingCart = function (_Component) {
               }
             });
           }
+          sum -= parseInt(discountItems / 2) * 0.2;
         });
       }
       // if (this.state.historyCartList.length > 0) {
@@ -72493,7 +72495,6 @@ var ShoppingCart = function (_Component) {
       //   });
       // }
 
-      sum -= parseInt(discountItems / 2) * 0.2;
 
       return sum.toFixed(2);
     }
@@ -72808,11 +72809,12 @@ var Confirm = function (_Component) {
     key: "getTotalPrice",
     value: function getTotalPrice() {
       var sum = 0;
-      var discountItems = 0;
 
       this.state.shoppingCartList.map(function (orderItem) {
         var resPrice = orderItem.item.pickedSize && orderItem.item.pickedSize.size_level !== 0 ? orderItem.item.pickedSize.price : orderItem.item.price;
         sum += resPrice * orderItem.quantity;
+        var discountItems = 0;
+
         if (orderItem.item.choices) {
           orderItem.item.choices.forEach(function (c) {
             if (c.pickedChoice) {
@@ -72825,9 +72827,8 @@ var Confirm = function (_Component) {
             }
           });
         }
+        sum -= parseInt(discountItems / 2) * 0.2;
       });
-
-      sum -= parseInt(discountItems / 2) * 0.2;
 
       return sum.toFixed(2);
     }
@@ -72883,8 +72884,6 @@ var Confirm = function (_Component) {
           this.props.match.params.mode === "preorder" ? this.props.app_conf.preorder_qr_tips : this.props.app_conf.tableorder_qr_tips
         )
       );
-
-      console.log({ cartList: this.state.shoppingCartList });
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "div",
