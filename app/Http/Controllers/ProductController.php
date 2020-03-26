@@ -28,7 +28,6 @@ class ProductController extends Controller
 
         if ($lang == "null" || $lang == "1") {
             $lang = \Config::get('app.default_language');
-            var_dump($lang);
         }
         // clear mode do not need details [1], full detail mode need everything. [9]*/
         $mode = config("app.show_options");
