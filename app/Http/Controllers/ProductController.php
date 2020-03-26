@@ -28,7 +28,7 @@ class ProductController extends Controller
 
         if ($lang == "null" || $lang == "1") {
             $lang = \Config::get('app.default_language');
-
+            var_dump($lang);
         }
         // clear mode do not need details [1], full detail mode need everything. [9]*/
         $mode = config("app.show_options");
@@ -162,6 +162,7 @@ class ProductController extends Controller
                 }
                 $choices_item["price"] = $choice_to_type["price"];
                 $choices_item["barcode"] = $choice_to_type["barcode"];
+                $choices_item["type"] = $choice_to_type["type"];
                 $image_path = '/table/public/images/items/' . $choice->image;
                 $choices_item["image"] = "";
                 if ($choice->image === null || !file_exists($_SERVER['DOCUMENT_ROOT'] . $image_path)) {

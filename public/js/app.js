@@ -71912,10 +71912,13 @@ var ChoiceForm = function (_Component) {
     key: "updateOrderItemChoice",
     value: function updateOrderItemChoice(pickedChoice, action) {
       console.log({ pickedChoice: pickedChoice, action: action });
-
       if (action) {
+        console.log(pickedChoice.type != 8889);
+
         this.setState({
-          pickedChoice: [].concat(_toConsumableArray(this.state.pickedChoice), [pickedChoice])
+          pickedChoice: pickedChoice.type != 8889 ? [].concat(_toConsumableArray(this.state.pickedChoice.filter(function (pc) {
+            return pc.type != pickedChoice.type;
+          })), [pickedChoice]) : [].concat(_toConsumableArray(this.state.pickedChoice), [pickedChoice])
         });
       } else {
         this.setState({

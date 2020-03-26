@@ -73,11 +73,15 @@ export default class ChoiceForm extends Component {
    */
   updateOrderItemChoice(pickedChoice, action) {
     console.log({ pickedChoice, action });
-
     if (action) {
+      console.log(pickedChoice.type != 8889);
+
       this.setState({
-        pickedChoice: [...this.state.pickedChoice, pickedChoice]
+        pickedChoice: pickedChoice.type != 8889
+          ? [...this.state.pickedChoice.filter(pc => pc.type != pickedChoice.type), pickedChoice]
+          : [...this.state.pickedChoice, pickedChoice]
       });
+
     } else {
       this.setState({
         pickedChoice: this.state.pickedChoice.filter(

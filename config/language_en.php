@@ -33,11 +33,11 @@ return [
 // orderedLabel - show on shopping list for the items already confirmed
     'order_label' => 'ordered',
 // preorder mode title
-    'preorder_title' => 'pre-order',
+    'preorder_title' => 'Pre-order',
 // preorder confirm page header text
     'preorder_confirm_text' => 'your order saved',
 // subtitle tips under qr code
-    'preorder_qr_tips' => 'Tips: please present this Qr code to our staff, thank you!',
+    'preorder_qr_tips' => 'Tips: No payment is required yet. Please show and scan this code at the register and payment will be processed there',
     //confirm total price titel
     'confirm_total' => 'Estimating',
     //continue order
