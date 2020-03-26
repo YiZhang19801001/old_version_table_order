@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\CategoryDescription;
+use App\Imports\SizeImports;
 use App\OptionDescription;
 use App\OptionValueDescription;
 use App\Product;
@@ -13,6 +14,8 @@ use App\ProductExt;
 use App\ProductOptionValue;
 use App\ProductToCategory;
 use App\Size;
+use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -280,6 +283,56 @@ class ProductController extends Controller
         foreach ($products as $product) {
             $product['image'] = $product->product_id . ".jpg";
             $product->save();
+        }
+    }
+
+    public function upload(Request $request)
+    {
+        try {
+            # read inputs from request
+            // do not worry about the SizeImports we will not use the model at all, just for syntax issues
+            $collections = Excel::toCollection(new SizeImports, request()->file('file'));
+            // all extras should be be appended on each product
+
+            $countUpdated = 0;
+            $notFound = [];
+            $fail = [];
+            # only deal with the first sheet in the excel file which is $collections[0]
+            foreach ($collections[0] as $row) {
+                // there are 3 columns
+                // barcode, old_desc, new_desc
+                // new_desc should be saved as product_description where language_code = 2
+                $product = Product::where('upc', $row['barcode'])->first();
+                if ($product) {
+                    $productId = $product->product_id;
+                    $productDesc = ProductDescription::where('product_id', $productId)->where('language_id', 2)->first();
+                    if ($productDesc) {
+                        $productDesc->update([
+                            "name" => $row['new_desc'],
+                        ]);
+                        $countUpdated++;
+                    } else {
+                        array_push($fail, $productId);
+                    }
+                } else {
+                    array_push($notFound, $row['barcode']);
+                }
+
+            }
+
+            return response()->json([
+                "code" => "0",
+                "message" => "success",
+                "fail" => $fail,
+                "updated" => $countUpdated,
+                'notFound' => $notFound,
+            ], 200);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                "code" => "9000",
+                "message" => $th->getMessage(),
+            ], 400);
         }
     }
 }

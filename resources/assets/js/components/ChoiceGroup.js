@@ -88,7 +88,7 @@ export default class ChoiceGroup extends Component {
                 className={`size-group__content ${isActive ? 'active' : ''}`}
                 onClick={() => { this.setChoice(choice, !isActive) }}
               >
-                {choice.name} {this.props.choiceGroup.type_id == 9998 ? null : (parseFloat(choice.price) === 0 ? "free" : `$${choice.price}`)}
+                {choice.name} {(this.props.choiceGroup.type_id == 9998 || this.props.choiceGroup.type_id === 9999) ? null : (parseFloat(choice.price) === 0 ? "free" : `$${choice.price}`)}
               </div>
             );
           })}

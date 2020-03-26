@@ -72199,7 +72199,7 @@ var ChoiceGroup = function (_Component) {
               },
               choice.name,
               " ",
-              _this2.props.choiceGroup.type_id == 9998 ? null : parseFloat(choice.price) === 0 ? "free" : "$" + choice.price
+              _this2.props.choiceGroup.type_id == 9998 || _this2.props.choiceGroup.type_id === 9999 ? null : parseFloat(choice.price) === 0 ? "free" : "$" + choice.price
             );
           })
         )
