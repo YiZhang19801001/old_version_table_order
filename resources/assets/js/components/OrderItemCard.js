@@ -112,9 +112,6 @@ export default class OrderItemCard extends Component {
                 className="order-item-card__choices"
                 key={`orderItemChoiceInShoppingCart${index}`}
               >
-                <div className="order-item-card__choices__type">
-                  {choice.type}
-                </div>
                 {choice.pickedChoice !== null
                   ? choice.pickedChoice.map((pickedchoice, index) => {
                     return (
@@ -126,7 +123,7 @@ export default class OrderItemCard extends Component {
                           {pickedchoice.name}
                         </span>
                         <span className="order-item-card__choices__pickedChoice-price">
-                          ${pickedchoice.price}
+                          {parseFloat(pickedchoice.price) == 0 ? null : `$${pickedchoice.price}`}
                         </span>
                       </div>
                     );

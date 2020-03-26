@@ -26071,11 +26071,6 @@ var OrderItemCard = function (_Component) {
                 className: "order-item-card__choices",
                 key: "orderItemChoiceInShoppingCart" + index
               },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                { className: "order-item-card__choices__type" },
-                choice.type
-              ),
               choice.pickedChoice !== null ? choice.pickedChoice.map(function (pickedchoice, index) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   "div",
@@ -26091,8 +26086,7 @@ var OrderItemCard = function (_Component) {
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "span",
                     { className: "order-item-card__choices__pickedChoice-price" },
-                    "$",
-                    pickedchoice.price
+                    parseFloat(pickedchoice.price) == 0 ? null : "$" + pickedchoice.price
                   )
                 );
               }) : null
@@ -72202,7 +72196,7 @@ var ChoiceGroup = function (_Component) {
               },
               choice.name,
               " ",
-              parseInt(choice.price) === 0 ? "free" : "$" + choice.price
+              _this2.props.choiceGroup.type_id == 9998 ? null : parseFloat(choice.price) === 0 ? "free" : "$" + choice.price
             );
           })
         )

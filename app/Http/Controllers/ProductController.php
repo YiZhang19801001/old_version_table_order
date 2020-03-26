@@ -156,7 +156,7 @@ class ProductController extends Controller
                 if ($lang == 1 || $lang == "null") {
                     $choices_item["name"] = $choice_to_type["name"];
 
-                } else if ($lang == 2) {
+                } else {
                     $choices_item["name"] = $choice_to_type["name_2"];
 
                 }

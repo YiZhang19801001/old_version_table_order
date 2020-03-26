@@ -78,7 +78,7 @@ body {
 }
 
 .order .main .category-list .category-list-item.active {
-  border-left: 3px solid #f55747;
+  border-left: 3px solid #c20f2f;
   border-bottom: none;
   background-color: #f1f1f1;
 }
@@ -348,7 +348,7 @@ body {
 }
 
 .product-card .product-info .price-quantity .control-pannel .number-quantity {
-  color: #f55747;
+  color: #c20f2f;
   font-weight: 600;
   padding-top: 1px;
 }
@@ -748,7 +748,7 @@ input:checked
 
 .shopping-cart .shopping-cart__header {
   height: 8.5vh;
-  background-color: #f55747;
+  background-color: #c20f2f;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -779,7 +779,7 @@ input:checked
   line-height: 21px;
   font-size: 16.2px;
   font-weight: 600;
-  color: #f55747;
+  color: #c20f2f;
   background-color: white;
   border-radius: 50%;
   width: 20px;
@@ -847,7 +847,7 @@ input:checked
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  background-color: #f55747;
+  background-color: #c20f2f;
   color: white;
 }
 
@@ -1064,7 +1064,7 @@ input:checked
   height: 22px;
   line-height: 22px;
   font-size: 18px;
-  color: #f55747;
+  color: #c20f2f;
   text-align: center;
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -1205,7 +1205,7 @@ input:checked
       -ms-flex-align: center;
           align-items: center;
   border-radius: 8px;
-  border: 1px solid #f55747;
+  border: 1px solid #c20f2f;
 }
 
 .confirm .qrcode-section .confirm__subtitle {
@@ -1716,7 +1716,7 @@ input:checked
 }
 
 .confirm-modal .order-confirm-dialog .button-pannel .cancel-button {
-  background-color: #f55747;
+  background-color: #c20f2f;
   padding: 5px 10px;
   color: white;
   border-radius: 3px;
@@ -1767,7 +1767,7 @@ input:checked
 
 .button-increase.fill .material-icons,
 .button-decrease.fill .material-icons {
-  background-color: #f55747;
+  background-color: #c20f2f;
   font-size: 16px;
   border-radius: 50%;
   color: white;
@@ -1790,7 +1790,7 @@ input:checked
 
 .button-increase.outline .material-icons,
 .button-decrease.outline .material-icons {
-  background-color: #f55747;
+  background-color: #c20f2f;
   font-size: 16px;
   border-radius: 50%;
   color: white;

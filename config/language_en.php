@@ -37,13 +37,13 @@ return [
 // preorder confirm page header text
     'preorder_confirm_text' => 'your order saved',
 // subtitle tips under qr code
-    'preorder_qr_tips' => 'Tips: please show this Qr code to our staff, thank you!',
+    'preorder_qr_tips' => 'Tips: please present this Qr code to our staff, thank you!',
     //confirm total price titel
     'confirm_total' => 'Estimating',
     //continue order
     'continue_order' => 'continue order',
     //qr code tips for table order
-    'tableorder_qr_tips' => 'Tips: please show this Qr code to our staff, when you checkout.',
+    'tableorder_qr_tips' => 'Tips: please present this Qr code to our staff, when you checkout.',
     // title for error page
     'menu' => 'Menu',
     // clear shopping cart at preorder mode
