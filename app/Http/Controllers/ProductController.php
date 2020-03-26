@@ -281,7 +281,7 @@ class ProductController extends Controller
     {
         $products = Product::all();
         foreach ($products as $product) {
-            $product['image'] = $product->product_id . ".jpg";
+            $product['image'] = $product->upc . ".jpg";
             $product->save();
         }
     }
