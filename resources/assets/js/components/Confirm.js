@@ -85,8 +85,7 @@ export default class Confirm extends Component {
 
   getTotalPrice() {
     let sum = 0;
-
-    console.log(this.state.shoppingCartList)
+    let discountItems = 0;
 
     this.state.shoppingCartList.map(orderItem => {
       let resPrice = (orderItem.item.pickedSize && orderItem.item.pickedSize.size_level !== 0) ? orderItem.item.pickedSize.price : orderItem.item.price;
@@ -95,12 +94,17 @@ export default class Confirm extends Component {
         orderItem.item.choices.forEach(c => {
           if (c.pickedChoice) {
             c.pickedChoice.forEach(pc => {
+              if (parseFloat(pc.price) == 0.7) {
+                discountItems++
+              }
               sum += parseFloat(pc.price) * orderItem.quantity;
             })
           }
         })
       }
     });
+
+    sum -= parseInt(discountItems / 2) * 0.2
 
     return sum.toFixed(2);
   }
@@ -154,9 +158,6 @@ export default class Confirm extends Component {
         </div>
       </div>
     );
-
-    console.log({ cartList: this.state.shoppingCartList });
-
 
     return (
       <div className="confirm">

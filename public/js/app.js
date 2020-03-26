@@ -25983,17 +25983,21 @@ var OrderItemCard = function (_Component) {
 
       // this.state.orderItem.item.choices.map(choice)
       var totalPrice = resPrice * this.state.orderItem.quantity;
-
+      var discountItems = 0;
       if (orderItem.choices) {
         orderItem.choices.forEach(function (c) {
           if (c.pickedChoice) {
             c.pickedChoice.forEach(function (pc) {
+              if (parseFloat(pc.price) == 0.7) {
+                discountItems++;
+              }
               totalPrice += parseFloat(pc.price) * _this2.state.orderItem.quantity;
             });
           }
         });
       }
 
+      totalPrice -= parseInt(discountItems / 2) * 0.2;
       return totalPrice.toFixed(2);
     }
   }, {
@@ -72463,6 +72467,8 @@ var ShoppingCart = function (_Component) {
     key: "getOrderTotalPrice",
     value: function getOrderTotalPrice() {
       var sum = 0;
+      var discountItems = 0;
+
       if (this.state.shoppingCartList.length > 0) {
         this.state.shoppingCartList.forEach(function (orderItem) {
           var resPrice = orderItem.item.pickedSize && orderItem.item.pickedSize.size_level !== 0 ? orderItem.item.pickedSize.price : orderItem.item.price;
@@ -72471,6 +72477,9 @@ var ShoppingCart = function (_Component) {
             orderItem.item.choices.forEach(function (c) {
               if (c.pickedChoice) {
                 c.pickedChoice.forEach(function (pc) {
+                  if (parseFloat(pc.price) == 0.7) {
+                    discountItems++;
+                  }
                   sum += parseFloat(pc.price) * orderItem.quantity;
                 });
               }
@@ -72483,6 +72492,9 @@ var ShoppingCart = function (_Component) {
       //     sum += orderItem.item.price * orderItem.quantity;
       //   });
       // }
+
+      sum -= parseInt(discountItems / 2) * 0.2;
+
       return sum.toFixed(2);
     }
   }, {
@@ -72796,8 +72808,7 @@ var Confirm = function (_Component) {
     key: "getTotalPrice",
     value: function getTotalPrice() {
       var sum = 0;
-
-      console.log(this.state.shoppingCartList);
+      var discountItems = 0;
 
       this.state.shoppingCartList.map(function (orderItem) {
         var resPrice = orderItem.item.pickedSize && orderItem.item.pickedSize.size_level !== 0 ? orderItem.item.pickedSize.price : orderItem.item.price;
@@ -72806,12 +72817,17 @@ var Confirm = function (_Component) {
           orderItem.item.choices.forEach(function (c) {
             if (c.pickedChoice) {
               c.pickedChoice.forEach(function (pc) {
+                if (parseFloat(pc.price) == 0.7) {
+                  discountItems++;
+                }
                 sum += parseFloat(pc.price) * orderItem.quantity;
               });
             }
           });
         }
       });
+
+      sum -= parseInt(discountItems / 2) * 0.2;
 
       return sum.toFixed(2);
     }

@@ -28,17 +28,21 @@ export default class OrderItemCard extends Component {
 
     // this.state.orderItem.item.choices.map(choice)
     let totalPrice = resPrice * this.state.orderItem.quantity;
-
+    let discountItems = 0;
     if (orderItem.choices) {
       orderItem.choices.forEach(c => {
         if (c.pickedChoice) {
           c.pickedChoice.forEach(pc => {
+            if (parseFloat(pc.price) == 0.7) {
+              discountItems++
+            }
             totalPrice += parseFloat(pc.price) * this.state.orderItem.quantity;
           })
         }
       })
     }
 
+    totalPrice -= parseInt(discountItems / 2) * 0.2
     return totalPrice.toFixed(2);
 
   }
