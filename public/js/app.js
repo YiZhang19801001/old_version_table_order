@@ -71917,8 +71917,6 @@ var ChoiceForm = function (_Component) {
     value: function updateOrderItemChoice(pickedChoice, action) {
       console.log({ pickedChoice: pickedChoice, action: action });
       if (action) {
-        console.log(pickedChoice.type != 8889);
-
         this.setState({
           pickedChoice: pickedChoice.type != 8889 ? [].concat(_toConsumableArray(this.state.pickedChoice.filter(function (pc) {
             return pc.type != pickedChoice.type;
