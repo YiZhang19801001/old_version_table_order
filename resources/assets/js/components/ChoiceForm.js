@@ -74,8 +74,6 @@ export default class ChoiceForm extends Component {
   updateOrderItemChoice(pickedChoice, action) {
     console.log({ pickedChoice, action });
     if (action) {
-      console.log(pickedChoice.type != 8889);
-
       this.setState({
         pickedChoice: pickedChoice.type != 8889
           ? [...this.state.pickedChoice.filter(pc => pc.type != pickedChoice.type), pickedChoice]
