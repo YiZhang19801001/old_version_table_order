@@ -113,7 +113,7 @@ class SizeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function temp($id)
+    public function temp()
     {
         $categoryIds = [1, 2, 3, 4, 5, 6];
         $productIds = ProductToCategory::whereIn('category_id', $categoryIds)->select('product_id')->distinct()->get();
