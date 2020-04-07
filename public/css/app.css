@@ -78,7 +78,7 @@ body {
 }
 
 .order .main .category-list .category-list-item.active {
-  border-left: 3px solid #c20f2f;
+  border-left: 3px solid #000;
   border-bottom: none;
   background-color: #f1f1f1;
 }
@@ -179,9 +179,9 @@ body {
   height: 11vh;
   width: 100vw;
   background-image: url("/table/public/images/layout/banner.png");
-  background-size: 13%;
+  background-size: 35%;
   background-repeat: no-repeat;
-  background-position: 10% 100%;
+  background-position: center;
   color: #fff;
   padding-top: 3px;
   padding-left: 20px;
@@ -190,7 +190,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   border-bottom: 3px solid #ffffff;
-  background-color: #FFF;
+  background-color: #000;
 }
 
 .head .left {
@@ -199,10 +199,9 @@ body {
           flex: 2;
   height: 39px;
   line-height: 39px;
-  font-size: 32px;
-  font-weight: bold;
-  color: #000;
-  margin-left: 5rem;
+  font-size: 24px;
+  font-weight: normal;
+  color: #FFF;
 }
 
 .head .right {
@@ -220,7 +219,6 @@ body {
   border: 1px solid #8c8c8c;
   text-align: center;
   padding: 1px 4px;
-  display: none;
 }
 
 .head .right .button .label {
@@ -347,7 +345,7 @@ body {
 }
 
 .product-card .product-info .price-quantity .control-pannel .number-quantity {
-  color: #c20f2f;
+  color: #000;
   font-weight: 600;
   padding-top: 1px;
 }
@@ -508,7 +506,7 @@ body {
   font-size: 12px;
   font-weight: 600;
   border-radius: 3px;
-  background-color: #ffba2d;
+  background-color: #5B9279;
   padding: 0 1rem;
 }
 
@@ -747,7 +745,7 @@ input:checked
 
 .shopping-cart .shopping-cart__header {
   height: 8.5vh;
-  background-color: #c20f2f;
+  background-color: #000;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -778,7 +776,7 @@ input:checked
   line-height: 21px;
   font-size: 16.2px;
   font-weight: 600;
-  color: #c20f2f;
+  color: #000;
   background-color: white;
   border-radius: 50%;
   width: 20px;
@@ -846,7 +844,7 @@ input:checked
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  background-color: #c20f2f;
+  background-color: #000;
   color: white;
 }
 
@@ -860,7 +858,7 @@ input:checked
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  background-color: #ffba2d;
+  background-color: #5B9279;
   color: #fff;
 }
 
@@ -929,7 +927,7 @@ input:checked
 
 .size-group__container .size-group .size-group__content.active {
   opacity: 1;
-  background-color: #ffba2d;
+  background-color: #5B9279;
 }
 
 .order-item-card {
@@ -943,6 +941,7 @@ input:checked
       -ms-flex-align: center;
           align-items: center;
   border-bottom: 0.5px solid #e5e5e5;
+  padding: 8px 0;
 }
 
 .order-item-card .order-item-card__img-container {
@@ -1063,7 +1062,7 @@ input:checked
   height: 22px;
   line-height: 22px;
   font-size: 18px;
-  color: #c20f2f;
+  color: #000;
   text-align: center;
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -1131,7 +1130,7 @@ input:checked
 
 .order-item-card .order-item-card__mode-3-pannel .mode-3-pannel__left .number,
 .order-item-card .order-item-card__mode-3-pannel .mode-3-pannel__right .number {
-  background-color: #ffba2d;
+  background-color: #5B9279;
   width: 100%;
   height: 19px;
   line-height: 19px;
@@ -1204,7 +1203,7 @@ input:checked
       -ms-flex-align: center;
           align-items: center;
   border-radius: 8px;
-  border: 1px solid #c20f2f;
+  border: 1px solid #000;
 }
 
 .confirm .qrcode-section .confirm__subtitle {
@@ -1323,13 +1322,13 @@ input:checked
   line-height: 28px;
   height: 28px;
   border-radius: 3px;
-  background-color: #ffba2d;
+  background-color: #5B9279;
   text-align: center;
   font-size: 14px;
-  font-weight: 600;
   color: #ffffff;
   text-decoration: none;
   padding: 0 1rem;
+  letter-spacing: 4px;
 }
 
 .confirm .confirm__footer {
@@ -1597,7 +1596,7 @@ input:checked
 
 .mysql .button-wrapper .submit-button {
   padding: 10px 30px;
-  background-color: #ffba2d;
+  background-color: #5B9279;
   border-radius: 5px;
   color: white;
   font-weight: 600;
@@ -1715,14 +1714,14 @@ input:checked
 }
 
 .confirm-modal .order-confirm-dialog .button-pannel .cancel-button {
-  background-color: #c20f2f;
+  background-color: #000;
   padding: 5px 10px;
   color: white;
   border-radius: 3px;
 }
 
 .confirm-modal .order-confirm-dialog .button-pannel .confirm-button {
-  background-color: #ffba2d;
+  background-color: #5B9279;
   padding: 5px 10px;
   color: white;
   border-radius: 3px;
@@ -1752,7 +1751,7 @@ input:checked
 }
 
 .setting .apply-button {
-  background: #ffba2d;
+  background: #5B9279;
   width: 130px;
   height: 20px;
   line-height: 20px;
@@ -1766,7 +1765,7 @@ input:checked
 
 .button-increase.fill .material-icons,
 .button-decrease.fill .material-icons {
-  background-color: #c20f2f;
+  background-color: #000;
   font-size: 16px;
   border-radius: 50%;
   color: white;
@@ -1789,7 +1788,7 @@ input:checked
 
 .button-increase.outline .material-icons,
 .button-decrease.outline .material-icons {
-  background-color: #c20f2f;
+  background-color: #000;
   font-size: 16px;
   border-radius: 50%;
   color: white;
@@ -1810,7 +1809,7 @@ input:checked
 
 .complete__button-wrapper .complete__button-back {
   padding: 10px 30px;
-  background-color: #ffba2d;
+  background-color: #5B9279;
   border-radius: 5px;
   color: white;
   font-weight: 600;
