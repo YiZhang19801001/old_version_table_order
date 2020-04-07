@@ -115,14 +115,19 @@ class SizeController extends Controller
      */
     public function temp()
     {
-        $categoryIds = [1, 2, 3, 4, 5, 6];
-        $productIds = ProductToCategory::whereIn('category_id', $categoryIds)->select('product_id')->distinct()->get();
+        try {
+            $categoryIds = [1, 2, 3, 4, 5, 6];
+            $productIds = ProductToCategory::whereIn('category_id', $categoryIds)->select('product_id')->distinct()->get();
 
-        $productExts = ProductExt::all();
+            $productExts = ProductExt::all();
 
-        // ProductExt::whereIn("product_id",$productIds)->delete();
+            $result = ProductExt::whereIn("product_id", $productIds)->delete();
 
-        return response()->json(compact("productIds"));
+            return response()->json(["code" => "0", "message" => "deleted"], 200);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json(["code" => "3000", "message" => $th->getMessage()], 200);
+        }
 
     }
 
