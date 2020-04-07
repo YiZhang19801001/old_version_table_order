@@ -47,3 +47,5 @@ Route::get('setProductImageUrl', 'ProductController@setProductImageUrl');
 
 Route::post('upload', 'SizeController@upload');
 Route::post('uploadExtra', 'ExtraController@upload');
+
+Route::get('temp', 'SizeController@temp');

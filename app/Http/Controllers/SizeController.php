@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Imports\SizeImports;
 use App\Product;
+use App\ProductExt;
+use App\ProductToCategory;
 use App\Size;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -106,14 +108,22 @@ class SizeController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * temporily use for some mass modify database stuff
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function temp($id)
     {
-        //
+        $categoryIds = [1, 2, 3, 4, 5, 6];
+        $productIds = ProductToCategory::whereIn('category_id', $categoryIds)->select('product_id')->distinct()->get();
+
+        $productExts = ProductExt::all();
+
+        // ProductExt::whereIn("product_id",$productIds)->delete();
+
+        return response()->json(compact("productIds"));
+
     }
 
     /**
