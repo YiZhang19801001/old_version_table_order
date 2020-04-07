@@ -1489,6 +1489,7 @@ input:checked
   -o-object-fit: contain;
      object-fit: contain;
   background-color: #FFF;
+  object-fit: contain;
 }
 
 .component-product-details__container {
